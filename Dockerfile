@@ -28,6 +28,8 @@ RUN npm run build
  
 
 # Stage 2 - the production environment
+# Stage 2 - the production environment
+# Stage 2 - the production environment
 FROM nginx:1.21-alpine
 COPY --from=build-deps /usr/src/app/dist/ /usr/share/nginx/html
 COPY --from=build-deps /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
