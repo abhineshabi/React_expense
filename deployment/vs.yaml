@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nginx-service-vs-pete-prod
+spec:
+  hosts:
+    - "exp.k8s.wdc.com"
+  gateways:
+    - istio-system/default-gateway # Use default gateway.
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            port:
+              number: 6621
+            host: exp-dev-svc
+

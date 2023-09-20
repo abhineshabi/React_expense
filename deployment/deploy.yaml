@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: exp-dev
+  labels:
+    e2-project: "exp-dev-app"
+    e2-environment: "SBX"
+    e2-criticality: "2"
+    e2-support-contact: "sunil.v"
+    e2-owner: "sunil.v"
+spec:
+  selector:
+    matchLabels:
+      app: exp-dev
+  template:
+    metadata:
+      labels:
+        app: exp-dev
+        e2-project: "exp-dev-app"
+        e2-environment: "SBX"
+        e2-criticality: "2"
+        e2-support-contact: "sunil.v"
+        e2-owner: "sunil.v"
+    spec:
+      containers:
+        - name: exp-dev-cont
+          image: artifactory.wdc.com:6621/exp-dev
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 4
+              memory: 4Gi
+            requests:
+              memory: 1Gi
+              cpu: 1
+      restartPolicy: Always
